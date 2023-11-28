@@ -53,8 +53,8 @@ public class robotnavigationAStar {
 
             // Check if the current point is the destination
             if (current.x == x2 && current.y == y2) {
-                System.out.println("Shortest path length: " + current.g);
-                return current.g;
+                System.out.println("Shortest path length: " + current.f);
+                return current.f;
             }
 
             // Explore neighbors
@@ -66,7 +66,6 @@ public class robotnavigationAStar {
                 if (newX >= 0 && newX < rows && newY >= 0 && newY < cols && matrix[newX][newY] == 0 && !visited[newX][newY]) {
                     int newG = current.g + 1;
                     int newH = heuristic(newX, newY, x2, y2);
-                    int newF = newG + newH;
 
                     pq.add(new Point(newX, newY, newG, newH));
                     visited[newX][newY] = true;

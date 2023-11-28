@@ -7,8 +7,7 @@ public class WaterJugBFS {
         int jug1 = 5;
         int jug2 = 7;
         int target = 3;
-//        solveWaterJugBFS(jug1, jug2, target);
-        solveWaterJugDFS(jug1, jug2, target);
+        solveWaterJugBFS(jug1, jug2, target);
     }
 
 
@@ -22,38 +21,6 @@ public class WaterJugBFS {
         }
     }
 
-    public static void solveWaterJugDFS(int jug1, int jug2, int target){
-        State initialState = new State(0,0);
-        Set<State> visited = new HashSet<>();
-        HashMap<State, State> map = new HashMap<>();
-
-        if(dfs(initialState, jug1, jug2, target, visited, map)){
-            printAnswerDfs(map);
-        }else{
-            System.out.println("No Solution Exists");
-        }
-    }
-
-    public static boolean dfs(State currentState, int jug1, int jug2, int target, Set<State> visited, HashMap<State,
-            State> parentMap){
-        // base case
-        if(currentState.jug1 == target || currentState.jug2 == target){
-            return true;
-        }
-
-        visited.add(currentState);
-
-        for (int i = 1; i <= 6 ; i++) {
-            State nextState = operation(currentState, i, jug1, jug2);
-
-            if(!visited.contains(nextState) && dfs(nextState, jug1, jug2, target, visited, parentMap)){
-                parentMap.put(nextState, currentState);
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     public static void solveWaterJugBFS(int jug1, int jug2, int target){
         State initialState = new State(0, 0);
@@ -112,22 +79,6 @@ public class WaterJugBFS {
         }
 
         return new State(jug1, jug2);
-    }
-
-    public static void printAnswerDfs(HashMap<State, State> parentMap){
-        List<State> ans = new ArrayList<>();
-        State init = new State(0,0);
-
-        while (parentMap.containsKey(init)){
-            init = parentMap.get(init);
-            ans.add(init);
-        }
-
-        System.out.println("Solution: ");
-        for(State x : ans){
-            System.out.println("Jug 1: " + x.jug1 + " | Jug 2: " + x.jug2);
-        }
-
     }
 
     public static void printAnswer(State currentState, HashMap<State, State> parentMap){
