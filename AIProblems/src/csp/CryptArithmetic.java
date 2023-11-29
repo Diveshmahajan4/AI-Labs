@@ -1,4 +1,4 @@
-package CSP;
+package csp;
 
 import java.util.Arrays;
 

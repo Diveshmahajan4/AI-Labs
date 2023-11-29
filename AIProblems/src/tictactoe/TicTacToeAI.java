@@ -1,4 +1,4 @@
-package TicTacToe;
+package tictactoe;
 
 public class TicTacToeAI {
     private static class Move
