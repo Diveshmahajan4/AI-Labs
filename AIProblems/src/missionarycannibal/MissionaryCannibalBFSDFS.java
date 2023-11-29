@@ -1,4 +1,4 @@
-package MissionaryCannibal;
+package missionarycannibal;
 
 import java.util.*;
 
